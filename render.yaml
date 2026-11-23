@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: lovelyshell-discord-bot
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: pnpm install
+    startCommand: node bots/community-bot/production-host.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 24.17.0
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: BOT_PREFIX
+        value: f
+      - key: DATABASE_URL
+        sync: false

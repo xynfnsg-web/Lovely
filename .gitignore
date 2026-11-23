@@ -1,0 +1,19 @@
+# Environment secrets
+.env
+*.env
+.env.local
+
+# Node modules
+node_modules/
+**/node_modules/
+
+# Local databases
+data/pgdata/
+**/pgdata/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# Build caches & logs
+*.log
+.tsbuildinfo

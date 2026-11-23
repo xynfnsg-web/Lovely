@@ -1,0 +1,6 @@
+packages:
+  - 'bots/*'
+  - 'lib/integrations-openai-ai-server'
+
+catalog:
+  '@types/node': '^22.0.0'

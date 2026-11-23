@@ -1,0 +1,40 @@
+kind = "web"
+previewPath = "/"
+title = "Discord Community Bot Site"
+description = "A public landing website for the Discord community bot, with an overview of its moderation, security, community, and setup features."
+version = "1.0.0"
+id = "artifacts/community-bot-site"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22433
+
+[services.development]
+run = "pnpm --filter @workspace/community-bot-site run dev"
+
+[services.production]
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/community-bot-site", "run", "build"]
+
+[services.production.build.env]
+NODE_ENV = "production"
+PORT = "22433"
+BASE_PATH = "/"
+
+[services.production.run]
+args = ["node", "bots/community-bot/production-host.js"]
+
+[services.production.run.env]
+PORT = "22433"
+NODE_ENV = "production"
+BASE_PATH = "/"
+
+[services.production.health.startup]
+path = "/healthz"
+
+[services.env]
+PORT = "22433"
+BASE_PATH = "/"
