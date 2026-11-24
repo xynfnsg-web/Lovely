@@ -109,7 +109,13 @@ class LocalPGPool {
 }
 
 function createDatabase() {
-  if (config.databaseUrl) {
+  if (
+    config.databaseUrl &&
+    !config.databaseUrl.includes("local") &&
+    !config.databaseUrl.includes("dummy") &&
+    !config.databaseUrl.includes("embedded") &&
+    !config.databaseUrl.includes("none")
+  ) {
     return new Pool({
       connectionString: config.databaseUrl,
       connectionTimeoutMillis: 10_000,
